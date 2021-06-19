@@ -43,7 +43,6 @@ class Server(ABC):
       srv.vm.provider "virtualbox" do |v|
         v.memory = {}
         v.cpus = {}
-        v.customize ["modifyvm", :id, "--nested-hw-virt", "on"]
       end""".format(self.name, box, self.name, flavour[self.flavour]['memory'], flavour[self.flavour]['cpu'])
     return config
 
@@ -143,7 +142,7 @@ class CENTOS75(Server):
 
 class CENTOS77(Server):
   
-  box = "kirankn/centOS-7.7"
+  box = "kirankn/centOS-7.8"
 
   def __init__(self, name, flavour, management_ip={}, interfaces=[], provision=[]):
     super().__init__(name, flavour, management_ip, interfaces, provision)

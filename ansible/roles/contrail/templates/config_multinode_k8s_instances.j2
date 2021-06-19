@@ -32,12 +32,12 @@ instances:
     ip: {{ primary.mip }}
     provider: bms
     roles:
-      #config_database:
-      #config:
-      #control:
-      #analytics_database:
-      #analytics:
-      #webui:
+      config_database:
+      config:
+      control:
+      analytics_database:
+      analytics:
+      webui:
       k8s_master:
       kubemanager:
 {% for i in range(dpdk_computes, computes|length) %}
@@ -46,8 +46,8 @@ instances:
     provider: bms
     roles:
       k8s_node:
-      #vrouter:
-        #PHYSICAL_INTERFACE: eth2
+      vrouter:
+        PHYSICAL_INTERFACE: eth2
 {% endfor %}
 contrail_configuration:
   KUBERNETES_PUBLIC_FIP_POOL: {'project': 'k8s-default', 'domain': 'default-domain', 'name': '__fip_pool_public__', 'network': '__public__'}

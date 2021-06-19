@@ -15,6 +15,7 @@ ansible --version
 env
 yum install -y python-requests
 ansible-playbook -i inventory/ -e orchestrator=kubernetes playbooks/install_k8s.yml
+ansible-playbook -i inventory/ -e orchestrator=kubernetes playbooks/install_contrail.yml
 
 echo "Installing Flannel and multus CNI"
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml

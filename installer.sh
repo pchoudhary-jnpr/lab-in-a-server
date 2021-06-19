@@ -72,6 +72,11 @@ wget http://10.204.217.158/images/kirankn/centos-7.7-virtualbox.box
 vagrant box add --name kirankn/centOS-7.7 /var/tmp/centos-7.7-virtualbox.box
 fi
 
+if [ `vagrant box list | grep kirankn/centOS-7.7 | wc -l` -eq "0" ]; then
+wget http://10.204.217.158/images/kirankn/centos-7.7-virtualbox.box
+vagrant box add --name kirankn/centOS-7.7 /var/tmp/centos-7.7-virtualbox.box
+fi
+
 echo "List Box"
 vagrant box list
 

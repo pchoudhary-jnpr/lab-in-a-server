@@ -28,14 +28,14 @@ instances:
     ip: {{ vm_ip }}
     provider: bms
     roles:
-      #config:
-      #config_database:
-      #control:
-      #webui:
-      #analytics:
-      #analytics_database:
-      #vrouter:
-        #VROUTER_GATEWAY: {{ vm_gw }}
+      config:
+      config_database:
+      control:
+      webui:
+      analytics:
+      analytics_database:
+      vrouter:
+        VROUTER_GATEWAY: {{ vm_gw }}
       k8s_master:
       kubemanager:
       k8s_node:
