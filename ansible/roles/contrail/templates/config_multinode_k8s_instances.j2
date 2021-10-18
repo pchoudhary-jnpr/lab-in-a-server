@@ -40,6 +40,21 @@ instances:
       webui:
       k8s_master:
       kubemanager:
+{% for control in controls %}
+{{ controller_mip.append(control.mip) }}
+{{ controller_cdip.append(control.ip) }}
+  {{ control.host }}:
+    ip: {{ control.mip }}
+    provider: bms
+    roles:
+      config_database:
+      config:
+      control:
+      analytics_database:
+      analytics:
+      webui:
+      kubemanager:
+{% endfor %}
 {% for i in range(dpdk_computes, computes|length) %}
   {{ computes[i].host }}:
     ip: {{ computes[i].mip }}

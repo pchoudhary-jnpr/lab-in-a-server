@@ -776,12 +776,12 @@ def three_node_k8s(inputs):
     computes = host_instance[:(inputs['additional_compute']+2)]
     computes_ip = computes_controllers[:(inputs['additional_compute']+2)]
     #controls = host_instance[(inputs['additional_compute']+2):]
-    #controls_ip = computes_controllers[(inputs['additional_compute']+2):]
+    controls_ip = computes_controllers[(inputs['additional_compute']+2):]
   # increase computes size
     for compute_node in computes:
       print(compute_node)
       compute_node[1].flavour = get_flavour(inputs, "medium")
-    contrail_host[1].provision.append({'method': 'ansible', 'path': "\"%s\""%(os.path.join(ansible_scripts_path, 'multinode_k8s.yml')), 'variables':{'primary':primary, 'computes': computes_ip, 'registry': inputs['registry'], 'ntp_server': 'ntp.juniper.net', 'kolla_evip': kolla_evip, 'ctrl_data_gateway': ctrl_data_gateway, 'contrail_version': inputs['contrail_version'], 'vagrant_root': "%s"%(os.path.join(par_dir, inputs['name'])), 'dpdk_computes':inputs['dpdk_computes'], 'contrail_deployer_branch':inputs['contrail_deployer_branch'], 'huge_pages':vm.flavour[get_flavour(inputs, "medium")]['hugepages'], 'k8s_version':'1.19.3'}})
+    contrail_host[1].provision.append({'method': 'ansible', 'path': "\"%s\""%(os.path.join(ansible_scripts_path, 'multinode_k8s.yml')), 'variables':{'primary':primary, 'controls': controls_ip, 'computes': computes_ip, 'registry': inputs['registry'], 'ntp_server': 'ntp.juniper.net', 'kolla_evip': kolla_evip, 'ctrl_data_gateway': ctrl_data_gateway, 'contrail_version': inputs['contrail_version'], 'vagrant_root': "%s"%(os.path.join(par_dir, inputs['name'])), 'dpdk_computes':inputs['dpdk_computes'], 'contrail_deployer_branch':inputs['contrail_deployer_branch'], 'huge_pages':vm.flavour[get_flavour(inputs, "medium")]['hugepages'], 'k8s_version':'1.19.3'}})
     contrail_host[1].provision.extend([{'method':'file', 'source':"\"%s\""%(os.path.join(ansible_scripts_path, "scripts/all_k8s.sh")), 'destination': "\"/tmp/all_k8s.sh\""}, {'method': 'shell', 'inline': "\"/bin/sh /tmp/all_k8s.sh\"" }])
     host_instance.append(contrail_host)
 
