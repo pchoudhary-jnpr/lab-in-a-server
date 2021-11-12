@@ -37,6 +37,16 @@
     name: git
     state: latest
 
+- name: Install gcc
+  yum:
+    name: gcc
+    state: latest
+
+- name: Install patch
+  yum:
+    name: patch
+    state: latest
+
 - name: Install tmux
   yum:
     name: tmux
