@@ -36,8 +36,8 @@ instances:
       config_database:
       config:
       control:
-      analytics_database:
       analytics:
+      analytics_alarm:
       webui:
 {% for control in controls %}
 {{ controller_mip.append(control.mip) }}
@@ -50,8 +50,8 @@ instances:
       config_database:
       config:
       control:
-      analytics_database:
       analytics:
+      analytics_alarm:
       webui:
 {% endfor %}
 {% for i in range(0, dpdk_computes) %}
@@ -105,6 +105,7 @@ kolla_config:
     enable_haproxy: yes
 {% else %}
     enable_haproxy: no
+    enable_ironic_notifications: no
 {% endif %}
   kolla_passwords:
     keystone_admin_password: contrail123

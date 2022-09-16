@@ -302,7 +302,7 @@ def set_defaults_three_node(inputs):
 def get_centos_image(release):
   try:
     if float(release) < 1910:
-      image = vm.CENTOS75
+      image = vm.CENTOS77
     if release == "master" or float(release) > 1909 or release == "undefined":
       image = vm.CENTOS77
   except ValueError:

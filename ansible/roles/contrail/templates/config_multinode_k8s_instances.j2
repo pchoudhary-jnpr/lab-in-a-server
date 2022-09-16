@@ -35,11 +35,13 @@ instances:
       config_database:
       config:
       control:
-      analytics_database:
       analytics:
       webui:
       k8s_master:
       kubemanager:
+      k8s_node:
+      vrouter:
+        PHYSICAL_INTERFACE: eth2
 {% for control in controls %}
 {{ controller_mip.append(control.mip) }}
 {{ controller_cdip.append(control.ip) }}
@@ -50,7 +52,6 @@ instances:
       config_database:
       config:
       control:
-      analytics_database:
       analytics:
       webui:
       kubemanager:
@@ -72,6 +73,5 @@ contrail_configuration:
   RABBITMQ_NODE_PORT: 5673
   CONTROLLER_NODES: {{ controller_mip|join(',') }}
   CONTROL_NODES: {{ controller_cdip|join(',') }}
-  VROUTER_GATEWAY: {{ ctrl_data_gateway }}
   KUBERNETES_API_NODES: {{ primary.mip }}
   KUBERNETES_API_SERVER: {{ primary.mip }}

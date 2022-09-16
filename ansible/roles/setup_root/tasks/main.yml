@@ -61,8 +61,3 @@
   systemd:
     name: sshd
     state: restarted
-
-- name: Add github ip in /etc/hosts
-  lineinfile:
-    path: /etc/hosts
-    line: '13.234.210.38 github.com'

@@ -33,7 +33,6 @@ instances:
       control:
       webui:
       analytics:
-      analytics_database:
       vrouter:
         VROUTER_GATEWAY: {{ vm_gw }}
       openstack_control:
@@ -42,7 +41,7 @@ instances:
       openstack_monitoring:
       openstack_compute:
 contrail_configuration:
-  LOG_LEVEL: SYS_DEBUG
+  LOG_LEVEL: SYS_NOTICE
   CONTRAIL_VERSION: {{ contrail_version }}
   CLOUD_ORCHESTRATOR: openstack
   RABBITMQ_NODE_PORT: 5673
@@ -55,6 +54,7 @@ kolla_config:
     docker_namespace: kolla
     docker_registry: 10.84.5.85:5010
     enable_haproxy: no
+    enable_ironic_notifications: no
   kolla_passwords:
     keystone_admin_password: contrail123
   customize:
